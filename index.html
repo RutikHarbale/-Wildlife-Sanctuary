@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Widelife Sanctuary – Protecting Wildlife, Preserving Nature</title>
+  <meta name="description" content="Widelife Sanctuary is dedicated to conserving endangered species and preserving natural habitats. Explore, visit, and donate to our cause." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/extras.css" />
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div class="paw-icon"><i class="fas fa-paw"></i></div>
+      <p>Entering the Sanctuary…</p>
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- FLOATING LEAVES -->
+  <div class="leaves-container" id="leavesContainer"></div>
+
+  <!-- PARTICLES -->
+  <div class="particles-container" id="particlesContainer"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <i class="fas fa-paw"></i>
+        <span>Widelife <em>Sanctuary</em></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#gallery" class="nav-link">Wildlife</a></li>
+        <li><a href="#visit" class="nav-link">Visit</a></li>
+        <li><a href="#tickets" class="nav-link">Tickets</a></li>
+        <li><a href="#map" class="nav-link">Map</a></li>
+        <li><a href="#donate" class="nav-link">Donate</a></li>
+        <li><a href="#footer" class="nav-link">Contact</a></li>
+      </ul>
+      <!-- Language Switcher -->
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn" id="langBtn" aria-label="Select language">
+          <i class="fas fa-globe"></i>
+          <span id="langLabel">EN</span>
+          <i class="fas fa-chevron-down lang-arrow"></i>
+        </button>
+        <ul class="lang-dropdown" id="langDropdown">
+          <li><button class="lang-option active" data-lang="en">🇬🇧 English</button></li>
+          <li><button class="lang-option" data-lang="hi">🇮🇳 हिंदी</button></li>
+          <li><button class="lang-option" data-lang="mr">🇮🇳 मराठी</button></li>
+          <li><button class="lang-option" data-lang="ta">🇮🇳 தமிழ்</button></li>
+        </ul>
+      </div>
+      <a href="#donate" class="btn-nav-donate" data-i18n="nav.donate">Donate Now</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section id="home" class="hero">
+    <div class="hero-parallax" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <!-- Sunlight rays -->
+    <div class="sunrays">
+      <div class="ray"></div><div class="ray"></div><div class="ray"></div>
+      <div class="ray"></div><div class="ray"></div>
+    </div>
+    <!-- Mist -->
+    <div class="mist mist-1"></div>
+    <div class="mist mist-2"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-leaf"></i> Est. 2005 · Protected Reserve</div>
+      <h1 class="hero-title">
+        <span class="line line-1">Protecting Wildlife,</span>
+        <span class="line line-2">Preserving Nature</span>
+      </h1>
+      <p class="hero-sub">Explore the beauty of the wild and join us in our mission<br>to conserve and protect endangered species.</p>
+      <div class="hero-btns">
+        <a href="#gallery" class="btn-primary" id="heroExplore">
+          <span class="btn-ripple"></span>
+          <i class="fas fa-compass"></i> Explore Sanctuary
+        </a>
+        <a href="#donate" class="btn-secondary" id="heroDonate">
+          <i class="fas fa-heart"></i> Donate Now
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" data-target="500">0</span><span>+</span><p>Species</p></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="12000">0</span><span>+</span><p>Acres</p></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="85000">0</span><span>+</span><p>Supporters</p></div>
+      </div>
+    </div>
+    <!-- Quick nav pills -->
+    <div class="hero-quick-nav">
+      <a href="#about"><i class="fas fa-seedling"></i> Our Mission</a>
+      <a href="#gallery"><i class="fas fa-camera"></i> Wildlife Gallery</a>
+      <a href="#visit"><i class="fas fa-map-marker-alt"></i> Plan Your Visit</a>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll to Explore</span>
+      <div class="scroll-dot"></div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section id="about" class="section about-section">
+    <div class="section-bg-leaves"></div>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><i class="fas fa-leaf"></i> Who We Are</span>
+        <h2>A Sanctuary Born From <span class="highlight">Passion</span></h2>
+        <p>Widelife Sanctuary was founded with a single vision — to create a safe haven where wildlife can thrive, ecosystems heal, and nature finds its voice again.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-image-wrap reveal">
+          <div class="about-img-card">
+            <img src="assets/elephant.png" alt="Elephant in the sanctuary" />
+            <div class="about-img-badge"><i class="fas fa-shield-alt"></i> 100% Protected Zone</div>
+          </div>
+          <div class="about-floating-card glass">
+            <i class="fas fa-tree"></i>
+            <div>
+              <strong>Dense Forest Cover</strong>
+              <p>12,000+ acres of protected forest</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-content reveal reveal-right">
+          <div class="about-feature">
+            <div class="feature-icon"><i class="fas fa-paw"></i></div>
+            <div>
+              <h3>Wildlife Protection</h3>
+              <p>Our rangers patrol 24/7 to ensure every animal within our boundaries remains safe from poaching and habitat loss.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon"><i class="fas fa-water"></i></div>
+            <div>
+              <h3>Ecosystem Restoration</h3>
+              <p>We actively restore rivers, wetlands, and grasslands to their natural state, creating thriving habitats for diverse species.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div>
+              <h3>Education & Awareness</h3>
+              <p>Through guided tours, school programs, and research partnerships, we inspire the next generation of conservationists.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="feature-icon"><i class="fas fa-globe"></i></div>
+            <div>
+              <h3>Global Partnerships</h3>
+              <p>We collaborate with international wildlife organizations and governments to advance conservation laws and policies.</p>
+            </div>
+          </div>
+          <a href="#donate" class="btn-primary btn-sm"><i class="fas fa-heart"></i> Support Our Mission</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY SECTION ===== -->
+  <section id="gallery" class="section gallery-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><i class="fas fa-camera"></i> Wildlife Gallery</span>
+        <h2>Meet Our <span class="highlight">Wild Residents</span></h2>
+        <p>Every creature here has a story. Click any photo to discover the incredible wildlife that calls Widelife Sanctuary home.</p>
+      </div>
+      <div class="gallery-filter reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="big-cats">Big Cats</button>
+        <button class="filter-btn" data-filter="elephants">Elephants</button>
+        <button class="filter-btn" data-filter="birds">Birds</button>
+        <button class="filter-btn" data-filter="deer">Deer</button>
+        <button class="filter-btn" data-filter="insects">Insects</button>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal" data-category="big-cats" data-src="assets/tiger.png" data-title="Bengal Tiger" data-desc="The apex predator of the Indian subcontinent. Our sanctuary is home to over 30 Bengal tigers.">
+          <img src="assets/tiger.png" alt="Bengal Tiger" loading="lazy" />
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Bengal Tiger</h4>
+              <p>Panthera tigris tigris</p>
+            </div>
+            <button class="gallery-zoom" aria-label="View image"><i class="fas fa-expand-alt"></i></button>
+          </div>
+          <span class="gallery-tag">Endangered</span>
+        </div>
+        <div class="gallery-item reveal gallery-large" data-category="elephants" data-src="assets/elephant.png" data-title="Asian Elephant" data-desc="Gentle giants that shape entire ecosystems. Our herd of 18 Asian elephants roams freely in the sanctuary.">
+          <img src="assets/elephant.png" alt="Asian Elephant" loading="lazy" />
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Asian Elephant</h4>
+              <p>Elephas maximus</p>
+            </div>
+            <button class="gallery-zoom" aria-label="View image"><i class="fas fa-expand-alt"></i></button>
+          </div>
+          <span class="gallery-tag">Vulnerable</span>
+        </div>
+        <div class="gallery-item reveal" data-category="birds" data-src="assets/toucan.png" data-title="Toco Toucan" data-desc="Nature's most flamboyant aviator. Their colorful bills are a tool for thermoregulation and foraging.">
+          <img src="assets/toucan.png" alt="Toco Toucan" loading="lazy" />
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Toco Toucan</h4>
+              <p>Ramphastos toco</p>
+            </div>
+            <button class="gallery-zoom" aria-label="View image"><i class="fas fa-expand-alt"></i></button>
+          </div>
+          <span class="gallery-tag">Least Concern</span>
+        </div>
+        <div class="gallery-item reveal" data-category="insects" data-src="assets/butterfly.png" data-title="Blue Morpho Butterfly" data-desc="With wings that shimmer like sapphires, the Blue Morpho is one of nature's most stunning spectacles.">
+          <img src="assets/butterfly.png" alt="Blue Morpho Butterfly" loading="lazy" />
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Blue Morpho Butterfly</h4>
+              <p>Morpho peleides</p>
+            </div>
+            <button class="gallery-zoom" aria-label="View image"><i class="fas fa-expand-alt"></i></button>
+          </div>
+          <span class="gallery-tag">Protected</span>
+        </div>
+        <div class="gallery-item reveal gallery-large" data-category="deer" data-src="assets/deer.png" data-title="Spotted Deer" data-desc="The chital, or spotted deer, is one of the most common and beloved residents of our sanctuary.">
+          <img src="assets/deer.png" alt="Spotted Deer" loading="lazy" />
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Spotted Deer</h4>
+              <p>Axis axis</p>
+            </div>
+            <button class="gallery-zoom" aria-label="View image"><i class="fas fa-expand-alt"></i></button>
+          </div>
+          <span class="gallery-tag">Least Concern</span>
+        </div>
+        <div class="gallery-item reveal" data-category="big-cats" data-src="assets/tiger.png" data-title="Tiger Cub" data-desc="The future guardians of the jungle. Our breeding program has successfully raised 12 cubs this year.">
+          <img src="assets/tiger.png" alt="Tiger Cub" loading="lazy" />
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Tiger Cub</h4>
+              <p>Panthera tigris</p>
+            </div>
+            <button class="gallery-zoom" aria-label="View image"><i class="fas fa-expand-alt"></i></button>
+          </div>
+          <span class="gallery-tag">Endangered</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-overlay" id="lightboxOverlay"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+      <img src="" alt="" id="lightboxImg" />
+      <div class="lightbox-caption">
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== VISIT / SAFARI SECTION ===== -->
+  <section id="visit" class="section visit-section">
+    <div class="visit-bg-wrap">
+      <img src="assets/hero-bg.png" alt="Forest background" class="visit-bg-img" />
+      <div class="visit-bg-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="section-header reveal" style="color:#fff;">
+        <span class="section-tag light"><i class="fas fa-map-marker-alt"></i> Plan Your Visit</span>
+        <h2 style="color:#fff;">Safari <span class="highlight">Experiences</span></h2>
+        <p style="color:rgba(255,255,255,0.8);">Choose your adventure — from sunrise safaris to overnight jungle camps, every experience immerses you in the wild.</p>
+      </div>
+      <div class="visit-cards">
+        <div class="visit-card glass reveal">
+          <div class="visit-card-icon"><i class="fas fa-sun"></i></div>
+          <h3>Sunrise Safari</h3>
+          <p>Witness the forest awaken in the golden hour. Spot tigers, elephants, and rare birds in their most active moments.</p>
+          <ul class="visit-features">
+            <li><i class="fas fa-check"></i> 4-hour guided jeep tour</li>
+            <li><i class="fas fa-check"></i> Expert naturalist on board</li>
+            <li><i class="fas fa-check"></i> Breakfast at the forest edge</li>
+          </ul>
+          <div class="visit-price">From <strong>₹2,500</strong> / person</div>
+          <a href="#donate" class="btn-primary btn-sm" id="bookSunrise"><i class="fas fa-calendar-alt"></i> Book Now</a>
+        </div>
+        <div class="visit-card glass reveal visit-card-featured">
+          <div class="visit-card-badge">Most Popular</div>
+          <div class="visit-card-icon"><i class="fas fa-moon"></i></div>
+          <h3>Night Safari</h3>
+          <p>Experience the thrilling mystery of the jungle after dark. Discover nocturnal creatures and hear the wild come alive.</p>
+          <ul class="visit-features">
+            <li><i class="fas fa-check"></i> 3-hour moonlit jeep tour</li>
+            <li><i class="fas fa-check"></i> Thermal imaging equipment</li>
+            <li><i class="fas fa-check"></i> Campfire storytelling</li>
+          </ul>
+          <div class="visit-price">From <strong>₹3,800</strong> / person</div>
+          <a href="#donate" class="btn-primary btn-sm" id="bookNight"><i class="fas fa-calendar-alt"></i> Book Now</a>
+        </div>
+        <div class="visit-card glass reveal">
+          <div class="visit-card-icon"><i class="fas fa-campground"></i></div>
+          <h3>Jungle Camp</h3>
+          <p>A 2-day, 1-night full immersion experience. Live, breathe, and sleep in the heart of the sanctuary.</p>
+          <ul class="visit-features">
+            <li><i class="fas fa-check"></i> Safari + nature walk + birdwatch</li>
+            <li><i class="fas fa-check"></i> Luxury eco tent accommodation</li>
+            <li><i class="fas fa-check"></i> All meals included</li>
+          </ul>
+          <div class="visit-price">From <strong>₹9,500</strong> / person</div>
+          <a href="#donate" class="btn-primary btn-sm" id="bookCamp"><i class="fas fa-calendar-alt"></i> Book Now</a>
+        </div>
+      </div>
+      <div class="visit-info reveal">
+        <div class="visit-info-item">
+          <i class="fas fa-clock"></i>
+          <div><strong>Opening Hours</strong><p>6:00 AM – 6:00 PM</p></div>
+        </div>
+        <div class="visit-info-item">
+          <i class="fas fa-calendar"></i>
+          <div><strong>Best Season</strong><p>October – April</p></div>
+        </div>
+        <div class="visit-info-item">
+          <i class="fas fa-phone"></i>
+          <div><strong>Reservations</strong><p>+91 98765 43210</p></div>
+        </div>
+        <div class="visit-info-item">
+          <i class="fas fa-map-pin"></i>
+          <div><strong>Location</strong><p>Western Ghats, India</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DONATE SECTION ===== -->
+  <section id="donate" class="section donate-section">
+    <div class="container">
+      <div class="donate-wrap">
+        <div class="donate-left reveal">
+          <span class="section-tag"><i class="fas fa-heart"></i> Make a Difference</span>
+          <h2>Every Rupee <span class="highlight">Saves a Life</span></h2>
+          <p>Your contribution directly funds ranger patrols, habitat restoration, veterinary care, and community education programs. Together, we protect the wild for future generations.</p>
+          <div class="donate-impact">
+            <div class="impact-item">
+              <div class="impact-icon"><i class="fas fa-shield-alt"></i></div>
+              <div><strong>₹500</strong><p>Funds one day of ranger patrol</p></div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-icon"><i class="fas fa-tree"></i></div>
+              <div><strong>₹2,000</strong><p>Plants 50 native trees</p></div>
+            </div>
+            <div class="impact-item">
+              <div class="impact-icon"><i class="fas fa-paw"></i></div>
+              <div><strong>₹5,000</strong><p>Sponsors an animal for a month</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="donate-right reveal reveal-right">
+          <div class="donate-card glass">
+            <h3><i class="fas fa-leaf"></i> Conservation Goal 2026</h3>
+            <p class="donate-goal-text">Help us reach our annual target to expand the protected zone by 500 acres.</p>
+            <div class="progress-wrap">
+              <div class="progress-labels">
+                <span>₹68,40,000 raised</span>
+                <span>76%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="donateProgress" data-target="76"></div>
+              </div>
+              <p class="progress-goal">Goal: ₹90,00,000</p>
+            </div>
+            <div class="donate-amounts">
+              <button class="amount-btn active" data-amount="500">₹500</button>
+              <button class="amount-btn" data-amount="2000">₹2,000</button>
+              <button class="amount-btn" data-amount="5000">₹5,000</button>
+              <button class="amount-btn" data-amount="custom">Custom</button>
+            </div>
+            <input type="number" id="customAmount" class="custom-amount-input" placeholder="Enter custom amount (₹)" style="display:none;" />
+            <button class="btn-primary btn-full" id="donateBtn">
+              <i class="fas fa-heart"></i> Donate Now
+            </button>
+            <p class="donate-secure"><i class="fas fa-lock"></i> Secure & encrypted donation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer" class="footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="nav-logo footer-logo">
+            <i class="fas fa-paw"></i>
+            <span>Widelife <em>Sanctuary</em></span>
+          </a>
+          <p>A protected haven where wildlife thrives, ecosystems heal, and humans reconnect with nature.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-links-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#gallery">Wildlife Gallery</a></li>
+            <li><a href="#visit">Plan a Visit</a></li>
+            <li><a href="#donate">Donate</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Conservation</h4>
+          <ul>
+            <li><a href="#about">Our Mission</a></li>
+            <li><a href="#about">Research Programs</a></li>
+            <li><a href="#about">Anti-Poaching Unit</a></li>
+            <li><a href="#about">Volunteer</a></li>
+            <li><a href="#donate">Sponsor an Animal</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4>Contact Us</h4>
+          <ul class="footer-contact">
+            <li><i class="fas fa-map-marker-alt"></i> Western Ghats Forest Reserve, India</li>
+            <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+            <li><i class="fas fa-envelope"></i> hello@widelifesanctuary.org</li>
+            <li><i class="fas fa-clock"></i> Mon–Sat: 6 AM – 6 PM</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© 2026 Widelife Sanctuary. All rights reserved. Built with <i class="fas fa-heart" style="color:#c5472b;"></i> for the wild.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== TICKET BOOKING SECTION ===== -->
+  <section id="tickets" class="section tickets-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><i class="fas fa-ticket-alt"></i> Book Your Visit</span>
+        <h2>Choose Your <span class="highlight">Safari Ticket</span></h2>
+        <p>Select a ticket type and fill in the details below. Instant confirmation guaranteed.</p>
+      </div>
+
+      <!-- Ticket Type Cards -->
+      <div class="ticket-cards reveal">
+        <div class="ticket-card" data-type="adult" data-price="800">
+          <div class="ticket-card-icon"><i class="fas fa-user"></i></div>
+          <h3>Adult</h3>
+          <div class="ticket-price">₹800 <span>/ person</span></div>
+          <ul class="ticket-perks">
+            <li><i class="fas fa-check"></i> Full sanctuary access</li>
+            <li><i class="fas fa-check"></i> Guided nature walk</li>
+            <li><i class="fas fa-check"></i> Welcome drink</li>
+          </ul>
+          <button class="btn-select-ticket btn-primary btn-sm" data-type="adult" data-price="800">Select</button>
+        </div>
+        <div class="ticket-card ticket-card-featured" data-type="child" data-price="400">
+          <div class="ticket-card-badge">Best Value</div>
+          <div class="ticket-card-icon"><i class="fas fa-child"></i></div>
+          <h3>Child <small>(3–12 yrs)</small></h3>
+          <div class="ticket-price">₹400 <span>/ person</span></div>
+          <ul class="ticket-perks">
+            <li><i class="fas fa-check"></i> Full sanctuary access</li>
+            <li><i class="fas fa-check"></i> Kids activity kit</li>
+            <li><i class="fas fa-check"></i> Wildlife storybook</li>
+          </ul>
+          <button class="btn-select-ticket btn-primary btn-sm" data-type="child" data-price="400">Select</button>
+        </div>
+        <div class="ticket-card" data-type="safari" data-price="1500">
+          <div class="ticket-card-icon"><i class="fas fa-binoculars"></i></div>
+          <h3>Safari Pass</h3>
+          <div class="ticket-price">₹1500 <span>/ person</span></div>
+          <ul class="ticket-perks">
+            <li><i class="fas fa-check"></i> Jeep safari included</li>
+            <li><i class="fas fa-check"></i> Expert naturalist</li>
+            <li><i class="fas fa-check"></i> Photo permit</li>
+          </ul>
+          <button class="btn-select-ticket btn-primary btn-sm" data-type="safari" data-price="1500">Select</button>
+        </div>
+      </div>
+
+      <!-- Booking Form -->
+      <div class="booking-wrap reveal">
+        <div class="booking-form-card glass">
+          <h3 class="booking-form-title"><i class="fas fa-calendar-check"></i> Complete Your Booking</h3>
+          <form id="bookingForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bookName">Full Name</label>
+                <input type="text" id="bookName" placeholder="e.g. Arjun Sharma" autocomplete="off" />
+                <span class="form-error" id="errName"></span>
+              </div>
+              <div class="form-group">
+                <label for="bookEmail">Email Address</label>
+                <input type="email" id="bookEmail" placeholder="you@email.com" autocomplete="off" />
+                <span class="form-error" id="errEmail"></span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bookDate">Visit Date</label>
+                <input type="date" id="bookDate" />
+                <span class="form-error" id="errDate"></span>
+              </div>
+              <div class="form-group">
+                <label for="bookType">Ticket Type</label>
+                <select id="bookType">
+                  <option value="">-- Select Type --</option>
+                  <option value="adult" data-price="800">Adult — ₹800</option>
+                  <option value="child" data-price="400">Child — ₹400</option>
+                  <option value="safari" data-price="1500">Safari Pass — ₹1500</option>
+                </select>
+                <span class="form-error" id="errType"></span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bookQty">Number of Tickets</label>
+                <div class="qty-control">
+                  <button type="button" class="qty-btn" id="qtyMinus"><i class="fas fa-minus"></i></button>
+                  <input type="number" id="bookQty" value="1" min="1" max="20" readonly />
+                  <button type="button" class="qty-btn" id="qtyPlus"><i class="fas fa-plus"></i></button>
+                </div>
+                <span class="form-error" id="errQty"></span>
+              </div>
+              <div class="form-group total-group">
+                <label>Total Amount</label>
+                <div class="total-display" id="totalDisplay">
+                  <span class="total-amount" id="totalAmount">₹0</span>
+                  <span class="total-note">Select type &amp; quantity</span>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn-primary btn-full" id="bookNowBtn">
+              <span class="btn-ripple"></span>
+              <i class="fas fa-ticket-alt"></i> Book Now
+            </button>
+          </form>
+          <!-- Confirmation message -->
+          <div class="booking-confirm" id="bookingConfirm">
+            <div class="confirm-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>Booking Confirmed! 🎉</h3>
+            <p id="confirmMsg"></p>
+            <button class="btn-primary btn-sm" id="bookAgainBtn"><i class="fas fa-redo"></i> Book Another</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAP SECTION ===== -->
+  <section id="map" class="section map-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag light"><i class="fas fa-map-marker-alt"></i> Find Us</span>
+        <h2 style="color:#fff;">Sanctuary <span class="highlight">Location</span></h2>
+        <p style="color:rgba(255,255,255,0.75);">We are located deep in the Western Ghats, one of India's most biodiverse forest regions. Plan your route below.</p>
+      </div>
+      <div class="map-wrap reveal">
+        <div class="map-sidebar glass">
+          <h4><i class="fas fa-info-circle"></i> Getting Here</h4>
+          <ul class="map-info-list">
+            <li><i class="fas fa-map-pin"></i> Western Ghats Forest Reserve, Karnataka 577427</li>
+            <li><i class="fas fa-car"></i> 85 km from Mangaluru Airport</li>
+            <li><i class="fas fa-train"></i> 12 km from Sakleshpur Railway Station</li>
+            <li><i class="fas fa-clock"></i> Open: 6:00 AM – 6:00 PM</li>
+            <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+          </ul>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=12.9716,77.5946" target="_blank" rel="noopener" class="btn-primary btn-sm directions-btn">
+            <i class="fas fa-directions"></i> Get Directions
+          </a>
+        </div>
+        <div class="map-container" id="leafletMap"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate Modal -->
+  <div id="donateModal" class="modal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-box glass">
+      <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+      <div class="modal-icon"><i class="fas fa-heart"></i></div>
+      <h3>Thank You for Donating!</h3>
+      <p>Your generosity helps protect the wild. We'll send your receipt and impact report to your email.</p>
+      <button class="btn-primary btn-sm" id="modalOk">Continue Exploring</button>
+    </div>
+  </div>
+
+  <!-- ===== CHATBOT WIDGET ===== -->
+  <div id="chatbot" class="chatbot">
+    <!-- Toggle Button -->
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open chat">
+      <i class="fas fa-comment-dots chatbot-icon-open"></i>
+      <i class="fas fa-times chatbot-icon-close"></i>
+      <span class="chatbot-badge" id="chatbotBadge">1</span>
+    </button>
+
+    <!-- Chat Window -->
+    <div class="chatbot-window glass" id="chatbotWindow">
+      <div class="chatbot-header">
+        <div class="chatbot-avatar"><i class="fas fa-paw"></i></div>
+        <div class="chatbot-header-info">
+          <strong data-i18n="chat.name">WildBot</strong>
+          <span class="chatbot-status"><span class="status-dot"></span> <span data-i18n="chat.status">Online</span></span>
+        </div>
+        <button class="chatbot-close-btn" id="chatbotCloseBtn" aria-label="Close chat"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="chatbot-messages" id="chatbotMessages">
+        <!-- Messages injected by JS -->
+      </div>
+
+      <div class="chatbot-quick" id="chatbotQuick">
+        <!-- Quick reply chips injected by JS -->
+      </div>
+
+      <div class="chatbot-input-row">
+        <input type="text" id="chatbotInput" placeholder="Type a message…" autocomplete="off" />
+        <button class="chatbot-send" id="chatbotSend" aria-label="Send">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="js/script.js"></script>
+  <script src="js/extras.js"></script>
+</body>
+</html>
